@@ -7,7 +7,7 @@
 <meta name="description" content="学习时敲过的代码将展示在这里。欢迎大家以码会友。Python、C、C++、JS、PHP等等都可以有！">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://code.linjianming.com//favicon.ico?v=1563854512750">
+<link rel="shortcut icon" href="https://code.linjianming.com//favicon.ico?v=1563855024318">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -130,11 +130,11 @@ var _hmt = _hmt || [];
             <p class="article-meta">
               2019-07-23
               
-                <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge secondary">
+                <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge ">
                   Python
                 </a>
               
-                <a href="https://code.linjianming.com//tag/xa6NL0YmB7" class="badge ">
+                <a href="https://code.linjianming.com//tag/xa6NL0YmB7" class="badge secondary">
                   爬虫
                 </a>
               
@@ -143,7 +143,6 @@ var _hmt = _hmt || [];
             <div class="post-content">
               <pre><code class="language-python">import sys
 import os
-import re
 import time
 import json
 import requests
@@ -161,7 +160,7 @@ content = json.loads(con.text)
 # content['images'][0] 为字典 
 # content['images'][0]['url'] 为字符串
 
-picUrl = 'https://cn.bing.com'+ content['images'][0]['url']
+picUrl = 'https://cn.bing.com' + content['images'][0]['url']
 if picUrl == '':
     print('找不到图片！程序出错啦！')
     sys.exit()
@@ -170,11 +169,11 @@ else:
     print('开始下载···')  
     read = requests.get(picUrl)
 
-
 f = open(os.path.join('BingImg', '%s.jpg' % local), 'wb')
 f.write(read.content)
 f.close()
 print('下载成功！')
+
 </code></pre>
 
             </div>
@@ -207,7 +206,7 @@ print('下载成功！')
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://code.linjianming.com//images/avatar.png?v=1563854512750" class="no-responsive avatar">
+    <img src="https://code.linjianming.com//images/avatar.png?v=1563855024318" class="no-responsive avatar">
     <div class="text-muted">学习时敲过的代码将展示在这里。欢迎大家以码会友。Python、C、C++、JS、PHP等等都可以有！</div>
     <div class="social-container">
       
@@ -335,7 +334,7 @@ print('下载成功！')
     </div>
     <div class="row">
       
-        <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge warning">
+        <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge success">
           Python
         </a>
       
@@ -343,7 +342,7 @@ print('下载成功！')
           爬虫
         </a>
       
-        <a href="https://code.linjianming.com//tag/sOSQKiRNM1" class="badge warning">
+        <a href="https://code.linjianming.com//tag/sOSQKiRNM1" class="badge ">
           C++
         </a>
       
@@ -351,7 +350,7 @@ print('下载成功！')
           C
         </a>
       
-        <a href="https://code.linjianming.com//tag/WX5g5Rke5n" class="badge ">
+        <a href="https://code.linjianming.com//tag/WX5g5Rke5n" class="badge secondary">
           数据结构
         </a>
       
