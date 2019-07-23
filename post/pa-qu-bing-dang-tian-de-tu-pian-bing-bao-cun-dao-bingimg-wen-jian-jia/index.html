@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>C实现循环链表 | 代码仓库</title>
+<title>爬取Bing当天的图片并保存到BingImg文件夹 | 代码仓库</title>
 <meta name="description" content="学习时敲过的代码将展示在这里。欢迎大家以码会友。Python、C、C++、JS、PHP等等都可以有！">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -126,87 +126,52 @@ var _hmt = _hmt || [];
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>C实现循环链表</h1>
+            <h1>爬取Bing当天的图片并保存到BingImg文件夹</h1>
             <p class="article-meta">
-              2018-10-25
+              2019-07-23
               
-                <a href="https://code.linjianming.com//tag/YtGyhykBnA" class="badge secondary">
-                  C
+                <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge secondary">
+                  Python
                 </a>
               
-                <a href="https://code.linjianming.com//tag/WX5g5Rke5n" class="badge success">
-                  数据结构
+                <a href="https://code.linjianming.com//tag/xa6NL0YmB7" class="badge success">
+                  爬虫
                 </a>
               
             </p>
             
             <div class="post-content">
-              <pre><code class="language-c">#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
+              <pre><code class="language-python">import sys
+import os
+import re
+import time
+import json
+import requests
 
-typedef struct node {
-	int number;
-	struct node * next;
-}person;
+local = time.strftime(&quot;%Y-%m-%d&quot;)  # 以当天日期命名文件
+url = 'https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1'
+os.makedirs('BingImg', exist_ok=True)
 
-person * initLink(int n) {
-	person * head = (person*)malloc(sizeof(person));
-	head-&gt;number = 1;
-	head-&gt;next = NULL;
-	person * cyclic = head;
-	for (int i = 2; i &lt;= n; i++) {
-		person * body = (person*)malloc(sizeof(person));
-		body-&gt;number = i;
-		body-&gt;next = NULL;
-		cyclic-&gt;next = body;
-		cyclic = cyclic-&gt;next;
-	}
-	cyclic-&gt;next = head;//首尾相连
-	return head;
-}
+con = requests.get(url)
+content = json.loads(con.text)
+# content['images'] 为列表
+# content['images'][0] 为字典 
+# content['images'][0]['url'] 为字符串
 
-void findAndKillK(person * head, int k, int m) {
-	person * tail = head;
-	//找到链表第一个结点的上一个结点，为删除操作做准备
-	while (tail-&gt;next != head) {
-		tail = tail-&gt;next;
-	}
-	person * p = head;
-	//找到编号为k的人
-	while (p-&gt;number != k) {
-		tail = p;
-		p = p-&gt;next;
-	}
-	//从编号为k的人开始，只有符合p-&gt;next==p时，说明链表中除了p结点，所有编号都出列了，
-	while (p-&gt;next != p) {
-		//找到从p报数1开始，报m的人，并且还要知道数m-1de人的位置tail，方便做删除操作。
-		for (int i = 1; i &lt; m; i++) {
-			tail = p;
-			p = p-&gt;next;
-		}
-		tail-&gt;next = p-&gt;next;//从链表上将p结点摘下来
-		printf(&quot;出列人的编号为:%d\n&quot;, p-&gt;number);
-		free(p);
-		p = tail-&gt;next;//继续使用p指针指向出列编号的下一个编号，游戏继续
-	}
-	printf(&quot;出列人的编号为:%d\n&quot;, p-&gt;number);
-	free(p);
-}
+picUrl = 'https://cn.bing.com'+ content['images'][0]['url']
+if picUrl == '':
+    print('找不到图片！程序出错啦！')
+    sys.exit()
+else:
+    print('获取图片地址成功：' + picUrl)
+    print('开始下载···')  
+    read = requests.get(picUrl)
 
-int main() {
-	printf(&quot;输入圆桌上的人数n:&quot;);
-	int n;
-	scanf_s(&quot;%d&quot;, &amp;n);
-	person * head = initLink(n);
-	printf(&quot;从第k人开始报数(k&gt;1且k&lt;%d)：&quot;, n);
-	int k;
-	scanf_s(&quot;%d&quot;, &amp;k);
-	printf(&quot;数到m的人出列：&quot;);
-	int m;
-	scanf_s(&quot;%d&quot;, &amp;m);
-	findAndKillK(head, k, m);
-	return 0;
-}
+
+f = open(os.path.join('BingImg', '%s.jpg' % local), 'wb')
+f.write(read.content)
+f.close()
+print('下载成功！')
 </code></pre>
 
             </div>
@@ -218,9 +183,9 @@ int main() {
               <div class="next">
                 下一篇
               </div>
-              <a href="https://code.linjianming.com//post/c-shi-xian-shun-xu-biao">
+              <a href="https://code.linjianming.com//post/python-mian-xiang-dui-xiang-kong-lei-jing-tai-fang-fa-yu-lei-fang-fa">
                 <h3 class="post-title">
-                  C实现顺序表
+                  Python面向对象-空类、静态方法与类方法
                 </h3>
               </a>
             </div>
@@ -367,23 +332,23 @@ int main() {
     </div>
     <div class="row">
       
-        <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge ">
+        <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge secondary">
           Python
         </a>
       
-        <a href="https://code.linjianming.com//tag/xa6NL0YmB7" class="badge secondary">
+        <a href="https://code.linjianming.com//tag/xa6NL0YmB7" class="badge warning">
           爬虫
         </a>
       
-        <a href="https://code.linjianming.com//tag/sOSQKiRNM1" class="badge warning">
+        <a href="https://code.linjianming.com//tag/sOSQKiRNM1" class="badge success">
           C++
         </a>
       
-        <a href="https://code.linjianming.com//tag/YtGyhykBnA" class="badge ">
+        <a href="https://code.linjianming.com//tag/YtGyhykBnA" class="badge secondary">
           C
         </a>
       
-        <a href="https://code.linjianming.com//tag/WX5g5Rke5n" class="badge secondary">
+        <a href="https://code.linjianming.com//tag/WX5g5Rke5n" class="badge success">
           数据结构
         </a>
       

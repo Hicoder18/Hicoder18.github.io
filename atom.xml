@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://code.linjianming.com/</id>
     <title>代码仓库</title>
-    <updated>2019-07-23T02:13:17.029Z</updated>
+    <updated>2019-07-23T03:34:15.924Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://code.linjianming.com/"/>
     <link rel="self" href="https://code.linjianming.com//atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://code.linjianming.com//images/avatar.png</logo>
     <icon>https://code.linjianming.com//favicon.ico</icon>
     <rights>All rights reserved 2019, 代码仓库</rights>
+    <entry>
+        <title type="html"><![CDATA[爬取Bing当天的图片并保存到BingImg文件夹]]></title>
+        <id>https://code.linjianming.com//post/pa-qu-bing-dang-tian-de-tu-pian-bing-bao-cun-dao-bingimg-wen-jian-jia</id>
+        <link href="https://code.linjianming.com//post/pa-qu-bing-dang-tian-de-tu-pian-bing-bao-cun-dao-bingimg-wen-jian-jia">
+        </link>
+        <updated>2019-07-23T03:32:48.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Python面向对象-空类、静态方法与类方法]]></title>
         <id>https://code.linjianming.com//post/python-mian-xiang-dui-xiang-kong-lei-jing-tai-fang-fa-yu-lei-fang-fa</id>
@@ -72,12 +79,5 @@
         <link href="https://code.linjianming.com//post/cplusplus-shi-xian-shu-zu-yuan-su-ni-zhi">
         </link>
         <updated>2019-03-19T00:48:40.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[C++重载函数]]></title>
-        <id>https://code.linjianming.com//post/cplusplus-chong-zai-han-shu</id>
-        <link href="https://code.linjianming.com//post/cplusplus-chong-zai-han-shu">
-        </link>
-        <updated>2019-03-18T02:46:38.000Z</updated>
     </entry>
 </feed>
