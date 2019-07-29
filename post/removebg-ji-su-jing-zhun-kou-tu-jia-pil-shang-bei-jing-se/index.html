@@ -7,7 +7,7 @@
 <meta name="description" content="学习时敲过的代码将展示在这里。欢迎大家以码会友。Python、C、C++、JS、PHP等等都可以有！">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://code.linjianming.com//favicon.ico?v=1564396193320">
+<link rel="shortcut icon" href="https://code.linjianming.com//favicon.ico?v=1564396446740">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -130,7 +130,7 @@ var _hmt = _hmt || [];
             <p class="article-meta">
               2019-07-31
               
-                <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge secondary">
+                <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge ">
                   Python
                 </a>
               
@@ -155,17 +155,18 @@ for pic in os.listdir(path):
 <p>bg_color.py</p>
 <pre><code class="language-python">from PIL import Image
 
-im = Image.open('images/2.jpg_no_bg.png')
+im = Image.open('images/2.jpg_no_bg.png')  # 加载已经抠图的图片
 x, y = im.size
 try:
     # (alpha band as paste mask).
-    p = Image.new('RGBA', im.size, (255, 0, 0))  # 红色
+    p = Image.new('RGBA', im.size, (255, 0, 0))  # 设置背景颜色为红色
     p.paste(im, (0, 0, x, y), im)
-    p.save('images/2_red.png')
+    p.save('images/2_red.png')  # 另存为新的图片
 except:
     pass
+
 </code></pre>
-<p>凭这个可以开家淘宝抠图店啦！</p>
+<p>大家可以修改代码打包成一个命令行工具，然后凭这个完全可以开家淘宝抠图店啦！</p>
 
             </div>
           </article>
@@ -197,7 +198,7 @@ except:
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://code.linjianming.com//images/avatar.png?v=1564396193320" class="no-responsive avatar">
+    <img src="https://code.linjianming.com//images/avatar.png?v=1564396446740" class="no-responsive avatar">
     <div class="text-muted">学习时敲过的代码将展示在这里。欢迎大家以码会友。Python、C、C++、JS、PHP等等都可以有！</div>
     <div class="social-container">
       
@@ -331,23 +332,23 @@ except:
     </div>
     <div class="row">
       
-        <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge ">
+        <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge secondary">
           Python
         </a>
       
-        <a href="https://code.linjianming.com//tag/xa6NL0YmB7" class="badge warning">
+        <a href="https://code.linjianming.com//tag/xa6NL0YmB7" class="badge secondary">
           爬虫
         </a>
       
-        <a href="https://code.linjianming.com//tag/sOSQKiRNM1" class="badge ">
+        <a href="https://code.linjianming.com//tag/sOSQKiRNM1" class="badge secondary">
           C++
         </a>
       
-        <a href="https://code.linjianming.com//tag/YtGyhykBnA" class="badge success">
+        <a href="https://code.linjianming.com//tag/YtGyhykBnA" class="badge secondary">
           C
         </a>
       
-        <a href="https://code.linjianming.com//tag/WX5g5Rke5n" class="badge success">
+        <a href="https://code.linjianming.com//tag/WX5g5Rke5n" class="badge secondary">
           数据结构
         </a>
       
