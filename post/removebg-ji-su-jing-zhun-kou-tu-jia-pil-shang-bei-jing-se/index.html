@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Python面向对象-类 | 代码仓库</title>
+<title>Remove.bg极速精准抠图加PIL上背景色 | 代码仓库</title>
 <meta name="description" content="学习时敲过的代码将展示在这里。欢迎大家以码会友。Python、C、C++、JS、PHP等等都可以有！">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -126,9 +126,9 @@ var _hmt = _hmt || [];
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>Python面向对象-类</h1>
+            <h1>Remove.bg极速精准抠图加PIL上背景色</h1>
             <p class="article-meta">
-              2019-07-21
+              2019-07-31
               
                 <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge secondary">
                   Python
@@ -137,47 +137,35 @@ var _hmt = _hmt || [];
             </p>
             
             <div class="post-content">
-              <pre><code class="language-python">import math
+              <p>removebg.py</p>
+<pre><code class="language-python"># 参考-https://www.cnblogs.com/open-yang/p/11240053.html
+# API-https://www.remove.bg/
 
-&quot;&quot;&quot;
-Object Oriented Programming - 面向对象编程
-面向对象是一种对现实世界理解和抽象的方法。
-万事万物都可以当作一个相对独立的对象来看待，如人、鸟、车、云等；抽象的事情，如战争、交通规划、出行计划等。
+from removebg import RemoveBg
+import os
 
-通过对现实世界的事物进行抽象，出现了一种新的可高效利用的数据类型——类（Class）。
-类的定义：把具有相同特性（数据）和行为（函数）的对象抽象为类。
-    数据可通过类内的局部变量来实现对数据的读写操作。
-    函数可以实现对类的相关行为的操作。
+rmbg = RemoveBg(&quot;your api&quot;, &quot;error.log&quot;)  # 前面引号内是你获取的API
+path = os.path.join(os.getcwd(), 'images')  # 图片放到程序的同级文件夹 images 里面
+# print(os.listdir(path))
+for pic in os.listdir(path):
+    rmbg.remove_background_from_img_file(f&quot;{path}/{pic}&quot;)
 
-把一个对象抽象成类的过程可归纳为如下几步：
-（1）归类。把具有相同特性和行为的对象归到一类。
-（2）提取这些对象的特性。注意：特性是静态的，相对不变的。
-（3）确定这些对象相关的操作行为。
-
-举例：抽象圆
-（1）归类。所有的圆归为圆类。
-（2）圆类的特性（属性）：半径、直径、周长、面积等。
-（3）可对圆类进行的操作行为：求周长，求面积等。
-&quot;&quot;&quot;
-
-
-class Circle:
-    &quot;&quot;&quot;求圆周长、面积的类&quot;&quot;&quot;
-    def __init__(self, radius):
-        self.radius = radius  # 圆的半径
-
-    def circle_girth(self):  # 求圆周长的函数 circle_girth
-        return 2*self.radius*math.pi  # 通过 math 库获取 pi 的值
-
-    def circle_area(self):  # 求圆面积的函数 circle_area
-        return self.radius*self.radius*math.pi
-
-
-r = int(input('请输入圆的半径：'))
-c1 = Circle(r)  # 通过 Circle 类赋值建立对应的一个实例圆 c1
-print('圆c1的周长为：%.3f' % c1.circle_girth())  # 通过实例调用 circle_girth() 方法求圆 c1 的周长
-print('圆c1的面积为：%.3f' % c1.circle_area())  # 通过实例调用 circle_area() 方法求圆 c1 的面积
 </code></pre>
+<hr>
+<p>bg_color.py</p>
+<pre><code class="language-python">from PIL import Image
+
+im = Image.open('images/2.jpg_no_bg.png')
+x, y = im.size
+try:
+    # (alpha band as paste mask).
+    p = Image.new('RGBA', im.size, (255, 0, 0))  # 红色
+    p.paste(im, (0, 0, x, y), im)
+    p.save('images/2_red.png')
+except:
+    pass
+</code></pre>
+<p>凭这个可以开家淘宝抠图店啦！</p>
 
             </div>
           </article>
@@ -188,9 +176,9 @@ print('圆c1的面积为：%.3f' % c1.circle_area())  # 通过实例调用 circl
               <div class="next">
                 下一篇
               </div>
-              <a href="https://code.linjianming.com//post/python-pa-qu-xkcd-man-hua">
+              <a href="https://code.linjianming.com//post/python-jian-li-pa-chong-dai-li-ip-chi">
                 <h3 class="post-title">
-                  Python爬取XKCD漫画
+                  Python建立爬虫代理ip池
                 </h3>
               </a>
             </div>
@@ -343,11 +331,11 @@ print('圆c1的面积为：%.3f' % c1.circle_area())  # 通过实例调用 circl
     </div>
     <div class="row">
       
-        <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge warning">
+        <a href="https://code.linjianming.com//tag/ee7brVhvD" class="badge ">
           Python
         </a>
       
-        <a href="https://code.linjianming.com//tag/xa6NL0YmB7" class="badge ">
+        <a href="https://code.linjianming.com//tag/xa6NL0YmB7" class="badge warning">
           爬虫
         </a>
       
@@ -355,11 +343,11 @@ print('圆c1的面积为：%.3f' % c1.circle_area())  # 通过实例调用 circl
           C++
         </a>
       
-        <a href="https://code.linjianming.com//tag/YtGyhykBnA" class="badge warning">
+        <a href="https://code.linjianming.com//tag/YtGyhykBnA" class="badge success">
           C
         </a>
       
-        <a href="https://code.linjianming.com//tag/WX5g5Rke5n" class="badge ">
+        <a href="https://code.linjianming.com//tag/WX5g5Rke5n" class="badge success">
           数据结构
         </a>
       
