@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://code.linjianming.com/</id>
     <title>代码仓库</title>
-    <updated>2020-01-31T09:40:17.175Z</updated>
+    <updated>2020-01-31T09:49:05.894Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://code.linjianming.com/"/>
     <link rel="self" href="https://code.linjianming.com/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://code.linjianming.com/images/avatar.png</logo>
     <icon>https://code.linjianming.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 代码仓库</rights>
+    <entry>
+        <title type="html"><![CDATA[Python爬虫 | requests通用代码框架]]></title>
+        <id>https://code.linjianming.com/post/python-pa-chong-or-requests-tong-yong-dai-ma-kuang-jia</id>
+        <link href="https://code.linjianming.com/post/python-pa-chong-or-requests-tong-yong-dai-ma-kuang-jia">
+        </link>
+        <updated>2020-01-31T09:42:53.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Remove.bg极速精准抠图加PIL上背景色]]></title>
         <id>https://code.linjianming.com/post/removebg-ji-su-jing-zhun-kou-tu-jia-pil-shang-bei-jing-se</id>
