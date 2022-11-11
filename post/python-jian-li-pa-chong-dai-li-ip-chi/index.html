@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Python建立爬虫代理ip池 | 代码仓库</title>
+<meta name="description" content="学习时敲过的代码将展示在这里。欢迎大家以码会友。Python、C、C++、JS、PHP等等都可以有！">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://Hicoder18.github.io/favicon.ico?v=1668160525177">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://Hicoder18.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144287846-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144287846-1');
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-2292575472696176",
+          enable_page_level_ads: true
+     });
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?28242f8146bcdeef848aedac22ba1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://Hicoder18.github.io">代码仓库</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Python建立爬虫代理ip池</h1>
+            <p class="article-meta">
+              2019-07-29
+              
+                <a href="https://Hicoder18.github.io/tag/ee7brVhvD/" class="badge secondary">
+                  Python
+                </a>
+              
+                <a href="https://Hicoder18.github.io/tag/xa6NL0YmB7/" class="badge secondary">
+                  爬虫
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <pre><code class="language-python">import threading
+import datetime
+import random
+import requests
+from bs4 import BeautifulSoup
+
+
+&quot;&quot;&quot;
+1、抓取西刺代理网站的代理ip
+2、并根据指定的目标url,对抓取到ip的有效性进行验证
+3、最后存到指定的path
+&quot;&quot;&quot;
+
+
+# ------------------------------------------------------文档处理--------------------------------------------------------
+# 写入文档
+def write(path, text):
+    with open(path, 'a') as f:
+        f.writelines(text)
+        f.write('\n')
+
+
+# 清空文档
+def truncatefile(path):
+    with open(path, 'w') as f:
+        f.truncate()
+
+
+# 读取文档
+def read(path):
+    with open(path, 'r') as f:
+        txt = []
+        for s in f.readlines():
+            txt.append(s.strip())
+    return txt
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# 计算时间差,格式: 时分秒
+def gettimediff(start, end):
+    seconds = (end - start).seconds
+    m, s = divmod(seconds, 60)
+    h, m = divmod(m, 60)
+    diff = (&quot;%02d:%02d:%02d&quot; % (h, m, s))
+    return diff
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# 返回一个随机的请求头 headers
+def getheaders():
+    user_agent_list = [
+        &quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1&quot;
+        &quot;Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1&quot;,
+        &quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3&quot;,
+        &quot;Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3&quot;,
+        &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3&quot;,
+        &quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24&quot;
+    ]
+    useragent = random.choice(user_agent_list)
+    headers = {'User-Agent': useragent}
+    return headers
+
+
+# -----------------------------------------------------检查ip是否可用----------------------------------------------------
+def checkip(targeturl, ip):
+    headers = getheaders()  # 定制请求头
+    proxies = {&quot;http&quot;: &quot;http://&quot; + ip, &quot;https&quot;: &quot;https://&quot; + ip}  # 代理ip
+    try:
+        response = requests.get(url=targeturl, proxies=proxies, headers=headers, timeout=5).status_code
+        if response == 200:
+            return True
+        else:
+            return False
+    except:
+        return False
+
+
+# -------------------------------------------------------获取代理方法----------------------------------------------------
+# 免费代理 XiciDaili
+def findip(type_, pagenum, targeturl, path):  # ip类型,页码,目标url,存放ip的路径
+    dic = {'1': 'https://www.xicidaili.com/nt/',  # xicidaili国内普通代理
+           '2': 'https://www.xicidaili.com/nn/',  # xicidaili国内高匿代理
+           '3': 'https://www.xicidaili.com/wn/',  # xicidaili国内https代理
+           '4': 'https://www.xicidaili.com/wt/'}  # xicidaili国外http代理
+    url = dic[str(type_)] + str(pagenum)  # 配置url
+    headers = getheaders()  # 定制请求头
+    html = requests.get(url=url, headers=headers, timeout=5).text
+    soup = BeautifulSoup(html, 'lxml')
+    all_ = soup.find_all('tr', class_='odd')
+    for i in all_:
+        t = i.find_all('td')
+        ip = t[1].text + ':' + t[2].text  # 用作验证可用性
+        is_avail = checkip(targeturl, ip)
+        ip = t[5].text.lower() + '://' + t[1].text + ':' + t[2].text  # 加协议保存
+        if is_avail:
+            write(path=path, text=ip)
+            print(ip)
+
+
+# -----------------------------------------------------多线程抓取ip入口---------------------------------------------------
+def getip(targeturl, path):
+    truncatefile(path)  # 爬取前清空文档
+    start = datetime.datetime.now()  # 开始时间
+    threads = []
+    for type_ in range(4):  # 四种类型ip,每种类型取前三页,共12条线程
+        for pagenum in range(3):
+            t = threading.Thread(target=findip, args=(type_ + 1, pagenum + 1, targeturl, path))
+            threads.append(t)
+    print('开始爬取代理ip')
+    for s in threads:  # 开启多线程爬取
+        s.start()
+    for e in threads:  # 等待所有线程结束
+        e.join()
+    print('爬取完成')
+    end = datetime.datetime.now()  # 结束时间
+    diff = gettimediff(start, end)  # 计算耗时
+    ips = read(path)  # 读取爬到的ip数量
+    print('一共爬取代理ip: %s 个,共耗时: %s \n' % (len(ips), diff))
+
+
+# -------------------------------------------------------启动-----------------------------------------------------------
+if __name__ == '__main__':
+    path_ = 'ip.txt'  # 存放爬取ip的文档path
+    targetUrl = 'http://www.baidu.com/'  # 验证ip有效性的指定url
+    getip(targetUrl, path_)
+
+</code></pre>
+<p>来源：https://www.cnblogs.com/TurboWay/p/8172246.html<br>
+对原代码略作修改，参考PEP8。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://Hicoder18.github.io/post/python-pa-chong-zi-ding-yi-qing-qiu-tou-headers/">
+                <h3 class="post-title">
+                  Python爬虫自定义请求头headers
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://Hicoder18.github.io/images/avatar.png?v=1668160525177" class="no-responsive avatar">
+    <div class="text-muted">学习时敲过的代码将展示在这里。欢迎大家以码会友。Python、C、C++、JS、PHP等等都可以有！</div>
+    <div class="social-container">
+      
+        
+          <a href="https://github.com/Hicoder18" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a href="https://weibo.com/Hicoder" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-pa-qu-pixbay-tu-pian/">Python爬取Pixbay图片</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/removebg-ji-su-jing-zhun-kou-tu-jia-pil-shang-bei-jing-se/">Remove.bg极速精准抠图加PIL上背景色</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-jian-li-pa-chong-dai-li-ip-chi/">Python建立爬虫代理ip池</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-pa-chong-zi-ding-yi-qing-qiu-tou-headers/">Python爬虫自定义请求头headers</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/pa-qu-bing-dang-tian-de-tu-pian-bing-bao-cun-dao-bingimg-wen-jian-jia/">爬取Bing当天的图片并保存到BingImg文件夹</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-kong-lei-jing-tai-fang-fa-yu-lei-fang-fa/">Python面向对象-空类、静态方法与类方法</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-si-you-hua/">Python面向对象-私有化</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-ji-cheng/">Python面向对象-继承</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-shi-li-yu-shu-xing/">Python面向对象-实例与属性</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-lei/">Python面向对象-类</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://Hicoder18.github.io/tag/ee7brVhvD/" class="badge secondary">
+          Python
+        </a>
+      
+        <a href="https://Hicoder18.github.io/tag/xa6NL0YmB7/" class="badge warning">
+          爬虫
+        </a>
+      
+        <a href="https://Hicoder18.github.io/tag/sOSQKiRNM1/" class="badge secondary">
+          C++
+        </a>
+      
+        <a href="https://Hicoder18.github.io/tag/YtGyhykBnA/" class="badge secondary">
+          C
+        </a>
+      
+        <a href="https://Hicoder18.github.io/tag/WX5g5Rke5n/" class="badge secondary">
+          数据结构
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://code.linjianming.com/" target="_blank">代码仓库</a>  | Author: <a href="https://linjianming.com/" target="_blank">随心而码</a> | <a class="rss" href="https://Hicoder18.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+<a id="goTop" href="javascript:;" title="返回顶部">TOP</a>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '1b9bffe5d00114983db9',
+        clientSecret: 'e54fb9632ec2aa763198c46ecc7d69d390e846ff',
+        repo: 'Hicoder18.github.io',
+        owner: 'Hicoder18',
+        admin: ['Hicoder18'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+<script type="text/javascript">
+	window.onload = function(){
+		var obtn = document.getElementById('goTop');  //获取回到顶部按钮的ID
+		var clientHeight = document.documentElement.clientHeight;   //获取可视区域的高度
+		var timer = null; //定义一个定时器
+		var isTop = true; //定义一个布尔值，用于判断是否到达顶部
+
+		window.onscroll = function(){         //滚动条滚动事件
+
+			//获取滚动条的滚动高度
+			var osTop = document.documentElement.scrollTop || document.body.scrollTop; 
+
+			if(osTop >= clientHeight){  //如果滚动高度大于可视区域高度，则显示回到顶部按钮
+				obtn.style.display = 'block';
+			}else{         //否则隐藏
+				obtn.style.display = 'none';
+			}
+
+			//主要用于判断当 点击回到顶部按钮后 滚动条在回滚过程中，若手动滚动滚动条，则清除定时器
+			if(!isTop){
+
+				clearInterval(timer);
+			}
+			isTop = false;
+
+		}
+
+		obtn.onclick = function(){    //回到顶部按钮点击事件
+			//设置一个定时器
+			timer = setInterval(function(){
+				//获取滚动条的滚动高度
+				var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+				//用于设置速度差，产生缓动的效果
+				var speed = Math.floor(-osTop / 6);
+				document.documentElement.scrollTop = document.body.scrollTop = osTop + speed;
+				isTop =true;  //用于阻止滚动事件清除定时器
+				if(osTop == 0){
+					clearInterval(timer);
+				}
+			},30);
+		}
+	}
+</script>
+  </body>
+</html>

@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>C实现顺序表 | 代码仓库</title>
+<meta name="description" content="学习时敲过的代码将展示在这里。欢迎大家以码会友。Python、C、C++、JS、PHP等等都可以有！">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://Hicoder18.github.io/favicon.ico?v=1668160525177">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://Hicoder18.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144287846-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144287846-1');
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-2292575472696176",
+          enable_page_level_ads: true
+     });
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?28242f8146bcdeef848aedac22ba1a9d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://Hicoder18.github.io">代码仓库</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>C实现顺序表</h1>
+            <p class="article-meta">
+              2018-10-23
+              
+                <a href="https://Hicoder18.github.io/tag/YtGyhykBnA/" class="badge success">
+                  C
+                </a>
+              
+                <a href="https://Hicoder18.github.io/tag/WX5g5Rke5n/" class="badge secondary">
+                  数据结构
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <p>SeqList.h</p>
+<pre><code class="language-c">#ifndef __SEQLIST_H__
+#define __SEQLIST_H__
+
+#define OK 1
+#define ERROR 0
+#define TRUE 1
+#define FALSE 0
+
+#define MAXSIZE 20 /* 存储空间初始分配量 */
+
+typedef int Status; /* Status 是函数的类型,其值是函数结果状态代码，如 OK 等 */
+typedef int ElemType; /* ElemType 类型根据实际情况而定，这里假设为 int */
+
+Status visit(ElemType c);
+
+typedef struct {
+	ElemType data[MAXSIZE]; /* 数组，存储数据元素 */
+	int length; /* 当前顺序表长度 */
+}SeqList;
+
+/* 初始化顺序表 */
+Status InitList(SeqList *L);
+
+/* 判断顺序表是否为空，是则返回TRUE；否则返回FALSE */
+Status ListEmpty(SeqList L);
+
+/* 重置顺序表为空表 */
+Status ClearList(SeqList *L);
+
+/* 销毁顺序表 */
+Status DestroyList(SeqList *L);
+
+/* 获取顺序表中元素个数 */
+Status ListLength(SeqList L);
+
+/* 获取顺序表中第i个位置的元素，用e返回其值。i &gt;= 1 &amp;&amp; i &lt;= ListLength(L) */
+Status GetElem(SeqList L, int i, ElemType *e);
+
+/* 返回顺序表中第一个与元素e满足关系的数据元素的位序 */
+/* 若这样的元素不存在，则返回0 */
+int LocateElem(SeqList L, ElemType e);
+
+/* 在顺序表中第i个位置插入新的数据元素e，L的长度加1。i &gt;= 1 &amp;&amp; i &lt;= ListLength(L) */
+Status ListInsert(SeqList *L, int i, ElemType e);
+
+/* 将顺序表中第i个位置的数据元素删除，并用e返回其值，L的长度减1。i &gt;= 1 &amp;&amp; i &lt;= ListLength(L) */
+Status ListDelete(SeqList *L, int i, ElemType *e);
+
+/* 操作结果：依次输出 L 的每个数据元素 */
+Status ListTraverse(SeqList L);
+
+/* La = La U Lb */
+void UnionL(SeqList *La, SeqList Lb);
+
+#endif
+</code></pre>
+<hr>
+<p>SeqList.c</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;string.h&gt;
+#include &lt;ctype.h&gt;
+#include &lt;io.h&gt;
+#include &lt;math.h&gt;
+#include &lt;time.h&gt;
+#include &quot;SeqList.h&quot;
+
+#define OK 1
+#define ERROR 0
+#define TRUE 1
+#define FALSE 0
+
+#define MAXSIZE 20 /* 存储空间初始分配量 */
+
+typedef int Status; /* Status 是函数的类型,其值是函数结果状态代码，如 OK 等 */
+typedef int ElemType; /* ElemType 类型根据实际情况而定，这里假设为 int */
+
+Status visit(ElemType c)
+{
+	printf(&quot;%d &quot;, c);
+	return OK;
+}
+
+//typedef struct {
+//	ElemType data[MAXSIZE]; /* 数组，存储数据元素 */
+//	int length; /* 当前顺序表长度 */
+//}SeqList; 
+
+
+/* 初始化顺序表 */
+Status InitList(SeqList *L) {
+	L-&gt;length = 0;
+
+	return OK;
+}
+
+/* 判断顺序表是否为空，是则返回TRUE；否则返回FALSE */
+Status ListEmpty(SeqList L) {
+	// 初始条件：L存在
+	if (L.length == 0) {
+		return TRUE;
+	}
+	else {
+		return FALSE;
+	}
+}
+
+/* 重置顺序表为空表 */
+Status ClearList(SeqList *L) {
+	if (L-&gt;length &gt;= 0 &amp;&amp; L-&gt;length &lt; (MAXSIZE + 1)) {
+		L-&gt;length = 0;
+		return OK;
+	}
+	else {
+		return ERROR;
+	}
+}
+
+/* 销毁顺序表 */
+Status DestroyList(SeqList *L) {
+	if (L-&gt;length &gt;= 0 &amp;&amp; L-&gt;length &lt; (MAXSIZE + 1)) {
+		free(L);
+		return OK;
+	}
+	else {
+		return ERROR;
+	}
+}
+
+/* 获取顺序表中元素个数 */
+int ListLength(SeqList L) {
+	if (L.length &gt;= 0 &amp;&amp; L.length &lt; (MAXSIZE + 1)) {
+		return L.length;
+	}
+	else {
+		return ERROR;
+	}
+}
+
+/* 获取顺序表中第i个位置的元素，用e返回其值。i &gt;= 1 &amp;&amp; i &lt;= ListLength(L) */
+Status GetElem(SeqList L, int i, ElemType *e) {
+	if (L.length == 0 || i &lt; 1 || i &gt; L.length) {
+		return ERROR;
+	}
+	*e = L.data[i - 1];
+
+	return OK;
+}
+
+/* 返回顺序表中第一个与元素e满足关系的数据元素的位序 */
+/* 若这样的元素不存在，则返回0 */
+int LocateElem(SeqList L, ElemType e) {
+	int i;
+	if (L.length == 0) {
+		return 0;
+	}
+	for (i = 0; i &lt; L.length; i++) {
+		if (L.data[i] == e) {
+			break;
+		}
+	}
+	if (i &gt;= L.length) {
+		return 0;
+	}
+
+	return i + 1;
+}
+
+/* 在顺序表中第i个位置插入新的数据元素e，L的长度加1。i &gt;= 1 &amp;&amp; i &lt;= ListLength(L) */
+Status ListInsert(SeqList *L, int i, ElemType e) {
+	int k;
+	if (L-&gt;length == MAXSIZE) {
+		return ERROR;
+	}
+	if (i &lt; 1 || i &gt; L-&gt;length + 1) {
+		return ERROR;
+	}
+	if (i &lt;= L-&gt;length) {
+		for (k = L-&gt;length - 1; k &gt;= i - 1; k--) {
+			L-&gt;data[k + 1] = L-&gt;data[k];
+		}
+	}
+	L-&gt;data[i - 1] = e;
+	L-&gt;length++;
+
+	return OK;
+}
+
+/* 将顺序表中第i个位置的数据元素删除，并用e返回其值，L的长度减1。i &gt;= 1 &amp;&amp; i &lt;= ListLength(L) */
+Status ListDelete(SeqList *L, int i, ElemType *e) {
+	int k;
+	if (L-&gt;length == 0) /* 线性表为空 */
+		return ERROR;
+	if (i&lt;1 || i&gt;L-&gt;length) /* 删除位置不正确 */
+		return ERROR;
+	*e = L-&gt;data[i - 1];
+	if (i &lt;= L-&gt;length) {
+		for (k = i; k &lt;= L-&gt;length; k++)/* 将删除位置后继元素前移 */
+			L-&gt;data[k - 1] = L-&gt;data[k];
+	}
+	L-&gt;length--;
+	return OK;
+}
+
+/* 操作结果：依次输出 L 的每个数据元素 */
+Status ListTraverse(SeqList L) {
+	int i;
+	for (i = 0; i &lt;= L.length; i++) {
+		visit(L.data[i]);
+	}
+	printf(&quot;\n&quot;);
+
+	return OK;
+}
+
+/* La = La U Lb */
+void UnionL(SeqList *La, SeqList Lb) {
+	int La_len, Lb_len, i;
+	ElemType e;
+
+	La_len = ListLength(*La);
+	Lb_len = ListLength(Lb);
+	
+	for (i = 1; i &lt;= Lb_len; i++) {
+		GetElem(Lb, i, &amp;e);
+		if (!LocateElem(*La, e)) {
+			ListInsert(La, ++La_len, e);
+		}
+	}
+}
+</code></pre>
+<hr>
+<p>main.c</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt; 
+#include &lt;stdlib.h&gt;
+#include &quot;SeqList.h&quot;
+
+int main() {
+	SeqList L;
+	SeqList Lb;
+	ElemType e;
+	Status i;
+	int j, k;
+
+	i = InitList(&amp;L);
+	printf(&quot;初始化 L 后：L.length=%d\n&quot;, L.length);
+	printf(&quot;\n&quot;);
+
+	for (j = 1; j &lt;= 8; j++)
+		i = ListInsert(&amp;L, 1, j);
+	printf(&quot;在 L 的表头依次插入 1～8 后：L.data=&quot;);
+	ListTraverse(L);
+	printf(&quot;L.length=%d \n&quot;, L.length);
+	printf(&quot;\n&quot;);
+
+	i = ListEmpty(L);
+	printf(&quot;L 是否空：i=%d(1:是 0:否)\n&quot;, i);
+	printf(&quot;\n&quot;);
+
+	i = ClearList(&amp;L);
+	printf(&quot;清空 L 后：L.length=%d\n&quot;, L.length);
+	i = ListEmpty(L);
+	printf(&quot;L 是否空：i=%d(1:是 0:否)\n&quot;, i);
+	printf(&quot;\n&quot;);
+
+	for (j = 1; j &lt;= 12; j++)
+		ListInsert(&amp;L, j, j);
+	printf(&quot;在 L 的表尾依次插入 1～12 后：L.data=&quot;);
+	ListTraverse(L);
+	printf(&quot;L.length=%d \n&quot;, L.length);
+	printf(&quot;\n&quot;);
+
+	ListInsert(&amp;L, 1, 0);
+	printf(&quot;在 L 的表头插入 0 后：L.data=&quot;);
+	ListTraverse(L);
+	printf(&quot;L.length=%d \n&quot;, L.length);
+	printf(&quot;\n&quot;);
+
+	GetElem(L, 6, &amp;e);
+	printf(&quot;第 6 个元素的值为：%d\n&quot;, e);
+	printf(&quot;\n&quot;);
+
+	for (j = 5; j &lt;= 7; j++){
+		k = LocateElem(L, j);
+		if (k)
+			printf(&quot;第%d个元素的值为%d\n&quot;,k,j);
+		else
+			printf(&quot;没有值为%d 的元素\n&quot;, j);
+	}
+	printf(&quot;\n&quot;);
+
+	k = ListLength(L); /* k 为表长 */
+	for (j = k + 1; j &gt;= k; j--){
+		i = ListDelete(&amp;L, j, &amp;e); /* 删除第 j 个数据
+		*/
+		if (i == ERROR)
+			printf(&quot;删除第%d个数据失败\n&quot;,j);
+		else
+			printf(&quot;删除第%d 个的元素值为：%d\n&quot;,j,e);
+	}
+	printf(&quot;依次输出 L 的元素：&quot;);
+	ListTraverse(L);
+	printf(&quot;\n&quot;);
+
+	j = 5;
+	ListDelete(&amp;L, j, &amp;e); /* 删除第 5 个数据 */
+	printf(&quot;删除第%d 个的元素值为：%d\n&quot;, j, e);
+	printf(&quot;依次输出 L 的元素：&quot;);
+	ListTraverse(L);
+	printf(&quot;此时 L 的长度 L.length=%d\n&quot;, L.length);
+	printf(&quot;\n&quot;);
+
+	//构造一个有 11 个数的 Lb
+	i = InitList(&amp;Lb);
+	for (j = 8; j &lt;= 18; j++)
+		i = ListInsert(&amp;Lb, 1, j);
+	printf(&quot;依次输出 Lb 的元素：&quot;);
+	ListTraverse(Lb);
+	printf(&quot;此时 Lb 的长度 Lb.length=%d\n&quot;, Lb.length);
+	printf(&quot;\n&quot;);
+
+	UnionL(&amp;L, Lb);
+	printf(&quot;依次输出合并了 Lb 的 L 的元素：&quot;);
+	ListTraverse(L);
+	printf(&quot;合并后 L 的长度 L.length=%d\n&quot;, L.length);
+	printf(&quot;\n&quot;);
+
+	/*DestroyList(&amp;Lb);
+	DestroyList(&amp;L);*/
+	system(&quot;pause&quot;);
+	return 0;
+}
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://Hicoder18.github.io/post/c-shi-xian-dan-lian-biao/">
+                <h3 class="post-title">
+                  C实现单链表
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://Hicoder18.github.io/images/avatar.png?v=1668160525177" class="no-responsive avatar">
+    <div class="text-muted">学习时敲过的代码将展示在这里。欢迎大家以码会友。Python、C、C++、JS、PHP等等都可以有！</div>
+    <div class="social-container">
+      
+        
+          <a href="https://github.com/Hicoder18" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a href="https://weibo.com/Hicoder" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-pa-qu-pixbay-tu-pian/">Python爬取Pixbay图片</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/removebg-ji-su-jing-zhun-kou-tu-jia-pil-shang-bei-jing-se/">Remove.bg极速精准抠图加PIL上背景色</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-jian-li-pa-chong-dai-li-ip-chi/">Python建立爬虫代理ip池</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-pa-chong-zi-ding-yi-qing-qiu-tou-headers/">Python爬虫自定义请求头headers</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/pa-qu-bing-dang-tian-de-tu-pian-bing-bao-cun-dao-bingimg-wen-jian-jia/">爬取Bing当天的图片并保存到BingImg文件夹</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-kong-lei-jing-tai-fang-fa-yu-lei-fang-fa/">Python面向对象-空类、静态方法与类方法</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-si-you-hua/">Python面向对象-私有化</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-ji-cheng/">Python面向对象-继承</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-shi-li-yu-shu-xing/">Python面向对象-实例与属性</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-lei/">Python面向对象-类</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://Hicoder18.github.io/tag/ee7brVhvD/" class="badge ">
+          Python
+        </a>
+      
+        <a href="https://Hicoder18.github.io/tag/xa6NL0YmB7/" class="badge secondary">
+          爬虫
+        </a>
+      
+        <a href="https://Hicoder18.github.io/tag/sOSQKiRNM1/" class="badge secondary">
+          C++
+        </a>
+      
+        <a href="https://Hicoder18.github.io/tag/YtGyhykBnA/" class="badge secondary">
+          C
+        </a>
+      
+        <a href="https://Hicoder18.github.io/tag/WX5g5Rke5n/" class="badge secondary">
+          数据结构
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://code.linjianming.com/" target="_blank">代码仓库</a>  | Author: <a href="https://linjianming.com/" target="_blank">随心而码</a> | <a class="rss" href="https://Hicoder18.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+<a id="goTop" href="javascript:;" title="返回顶部">TOP</a>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '1b9bffe5d00114983db9',
+        clientSecret: 'e54fb9632ec2aa763198c46ecc7d69d390e846ff',
+        repo: 'Hicoder18.github.io',
+        owner: 'Hicoder18',
+        admin: ['Hicoder18'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+<script type="text/javascript">
+	window.onload = function(){
+		var obtn = document.getElementById('goTop');  //获取回到顶部按钮的ID
+		var clientHeight = document.documentElement.clientHeight;   //获取可视区域的高度
+		var timer = null; //定义一个定时器
+		var isTop = true; //定义一个布尔值，用于判断是否到达顶部
+
+		window.onscroll = function(){         //滚动条滚动事件
+
+			//获取滚动条的滚动高度
+			var osTop = document.documentElement.scrollTop || document.body.scrollTop; 
+
+			if(osTop >= clientHeight){  //如果滚动高度大于可视区域高度，则显示回到顶部按钮
+				obtn.style.display = 'block';
+			}else{         //否则隐藏
+				obtn.style.display = 'none';
+			}
+
+			//主要用于判断当 点击回到顶部按钮后 滚动条在回滚过程中，若手动滚动滚动条，则清除定时器
+			if(!isTop){
+
+				clearInterval(timer);
+			}
+			isTop = false;
+
+		}
+
+		obtn.onclick = function(){    //回到顶部按钮点击事件
+			//设置一个定时器
+			timer = setInterval(function(){
+				//获取滚动条的滚动高度
+				var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+				//用于设置速度差，产生缓动的效果
+				var speed = Math.floor(-osTop / 6);
+				document.documentElement.scrollTop = document.body.scrollTop = osTop + speed;
+				isTop =true;  //用于阻止滚动事件清除定时器
+				if(osTop == 0){
+					clearInterval(timer);
+				}
+			},30);
+		}
+	}
+</script>
+  </body>
+</html>

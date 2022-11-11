@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://Hicoder18.github.io</id>
+    <title>代码仓库</title>
+    <updated>2022-11-11T09:55:27.812Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://Hicoder18.github.io"/>
+    <link rel="self" href="https://Hicoder18.github.io/atom.xml"/>
+    <subtitle>学习时敲过的代码将展示在这里。欢迎大家以码会友。Python、C、C++、JS、PHP等等都可以有！</subtitle>
+    <logo>https://Hicoder18.github.io/images/avatar.png</logo>
+    <icon>https://Hicoder18.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, 代码仓库</rights>
+    <entry>
+        <title type="html"><![CDATA[Python爬取Pixbay图片]]></title>
+        <id>https://Hicoder18.github.io/post/python-pa-qu-pixbay-tu-pian/</id>
+        <link href="https://Hicoder18.github.io/post/python-pa-qu-pixbay-tu-pian/">
+        </link>
+        <updated>2022-11-07T11:19:34.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Remove.bg极速精准抠图加PIL上背景色]]></title>
+        <id>https://Hicoder18.github.io/post/removebg-ji-su-jing-zhun-kou-tu-jia-pil-shang-bei-jing-se/</id>
+        <link href="https://Hicoder18.github.io/post/removebg-ji-su-jing-zhun-kou-tu-jia-pil-shang-bei-jing-se/">
+        </link>
+        <updated>2019-07-31T00:29:31.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python建立爬虫代理ip池]]></title>
+        <id>https://Hicoder18.github.io/post/python-jian-li-pa-chong-dai-li-ip-chi/</id>
+        <link href="https://Hicoder18.github.io/post/python-jian-li-pa-chong-dai-li-ip-chi/">
+        </link>
+        <updated>2019-07-29T03:21:31.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python爬虫自定义请求头headers]]></title>
+        <id>https://Hicoder18.github.io/post/python-pa-chong-zi-ding-yi-qing-qiu-tou-headers/</id>
+        <link href="https://Hicoder18.github.io/post/python-pa-chong-zi-ding-yi-qing-qiu-tou-headers/">
+        </link>
+        <updated>2019-07-26T11:21:37.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[爬取Bing当天的图片并保存到BingImg文件夹]]></title>
+        <id>https://Hicoder18.github.io/post/pa-qu-bing-dang-tian-de-tu-pian-bing-bao-cun-dao-bingimg-wen-jian-jia/</id>
+        <link href="https://Hicoder18.github.io/post/pa-qu-bing-dang-tian-de-tu-pian-bing-bao-cun-dao-bingimg-wen-jian-jia/">
+        </link>
+        <updated>2019-07-23T03:32:48.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python面向对象-空类、静态方法与类方法]]></title>
+        <id>https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-kong-lei-jing-tai-fang-fa-yu-lei-fang-fa/</id>
+        <link href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-kong-lei-jing-tai-fang-fa-yu-lei-fang-fa/">
+        </link>
+        <updated>2019-07-21T03:38:17.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python面向对象-私有化]]></title>
+        <id>https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-si-you-hua/</id>
+        <link href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-si-you-hua/">
+        </link>
+        <updated>2019-07-21T03:36:51.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python面向对象-继承]]></title>
+        <id>https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-ji-cheng/</id>
+        <link href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-ji-cheng/">
+        </link>
+        <updated>2019-07-21T03:35:21.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python面向对象-实例与属性]]></title>
+        <id>https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-shi-li-yu-shu-xing/</id>
+        <link href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-shi-li-yu-shu-xing/">
+        </link>
+        <updated>2019-07-21T03:34:39.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python面向对象-类]]></title>
+        <id>https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-lei/</id>
+        <link href="https://Hicoder18.github.io/post/python-mian-xiang-dui-xiang-lei/">
+        </link>
+        <updated>2019-07-21T03:33:17.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python爬取XKCD漫画]]></title>
+        <id>https://Hicoder18.github.io/post/python-pa-qu-xkcd-man-hua/</id>
+        <link href="https://Hicoder18.github.io/post/python-pa-qu-xkcd-man-hua/">
+        </link>
+        <updated>2019-05-13T03:16:05.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python爬取百度首页logo]]></title>
+        <id>https://Hicoder18.github.io/post/python-pa-qu-bai-du-shou-ye-logo/</id>
+        <link href="https://Hicoder18.github.io/post/python-pa-qu-bai-du-shou-ye-logo/">
+        </link>
+        <updated>2019-05-03T01:01:43.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++struct实例-论文导师分配系统]]></title>
+        <id>https://Hicoder18.github.io/post/cplusplus-struct-shi-li-lun-wen-dao-shi-fen-pei-xi-tong/</id>
+        <link href="https://Hicoder18.github.io/post/cplusplus-struct-shi-li-lun-wen-dao-shi-fen-pei-xi-tong/">
+        </link>
+        <updated>2019-03-21T01:35:46.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++实现数组元素逆置]]></title>
+        <id>https://Hicoder18.github.io/post/cplusplus-shi-xian-shu-zu-yuan-su-ni-zhi/</id>
+        <link href="https://Hicoder18.github.io/post/cplusplus-shi-xian-shu-zu-yuan-su-ni-zhi/">
+        </link>
+        <updated>2019-03-19T00:48:40.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++重载函数]]></title>
+        <id>https://Hicoder18.github.io/post/cplusplus-chong-zai-han-shu/</id>
+        <link href="https://Hicoder18.github.io/post/cplusplus-chong-zai-han-shu/">
+        </link>
+        <updated>2019-03-18T02:46:38.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++计算阶乘的两种方法]]></title>
+        <id>https://Hicoder18.github.io/post/cplusplus-ji-suan-jie-cheng-de-liang-chong-fang-fa/</id>
+        <link href="https://Hicoder18.github.io/post/cplusplus-ji-suan-jie-cheng-de-liang-chong-fang-fa/">
+        </link>
+        <updated>2019-03-18T02:41:00.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++数组实现简单的英文姓名按字母排序]]></title>
+        <id>https://Hicoder18.github.io/post/cplusplus-shu-zu-shi-xian-jian-dan-de-ying-wen-xing-ming-an-zi-mu-pai-xu/</id>
+        <link href="https://Hicoder18.github.io/post/cplusplus-shu-zu-shi-xian-jian-dan-de-ying-wen-xing-ming-an-zi-mu-pai-xu/">
+        </link>
+        <updated>2019-03-03T00:01:11.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++函数声明、定义与调用]]></title>
+        <id>https://Hicoder18.github.io/post/cplusplus-han-shu-sheng-ming-ding-yi-yu-diao-yong/</id>
+        <link href="https://Hicoder18.github.io/post/cplusplus-han-shu-sheng-ming-ding-yi-yu-diao-yong/">
+        </link>
+        <updated>2019-02-03T00:47:37.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++输出乘法口诀]]></title>
+        <id>https://Hicoder18.github.io/post/cplusplus-shu-chu-cheng-fa-kou-jue/</id>
+        <link href="https://Hicoder18.github.io/post/cplusplus-shu-chu-cheng-fa-kou-jue/">
+        </link>
+        <updated>2019-02-01T23:51:50.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++打印三角形、心形]]></title>
+        <id>https://Hicoder18.github.io/post/cplusplus-da-yin-san-jiao-xing-xin-xing/</id>
+        <link href="https://Hicoder18.github.io/post/cplusplus-da-yin-san-jiao-xing-xin-xing/">
+        </link>
+        <updated>2019-02-01T02:26:04.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++判定某年是否为闰年]]></title>
+        <id>https://Hicoder18.github.io/post/cplusplus-pan-ding-mou-nian-shi-fou-wei-run-nian/</id>
+        <link href="https://Hicoder18.github.io/post/cplusplus-pan-ding-mou-nian-shi-fou-wei-run-nian/">
+        </link>
+        <updated>2019-02-01T01:48:02.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++判定三边是否构成三角形]]></title>
+        <id>https://Hicoder18.github.io/post/cplusplus-pan-ding-san-bian-shi-fou-gou-cheng-san-jiao-xing/</id>
+        <link href="https://Hicoder18.github.io/post/cplusplus-pan-ding-san-bian-shi-fou-gou-cheng-san-jiao-xing/">
+        </link>
+        <updated>2019-02-01T00:43:59.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++运算符]]></title>
+        <id>https://Hicoder18.github.io/post/cplusplus-yun-suan-fu/</id>
+        <link href="https://Hicoder18.github.io/post/cplusplus-yun-suan-fu/">
+        </link>
+        <updated>2019-01-30T00:28:38.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++标准输入输出流]]></title>
+        <id>https://Hicoder18.github.io/post/cplusplus-biao-zhun-shu-ru-shu-chu-liu/</id>
+        <link href="https://Hicoder18.github.io/post/cplusplus-biao-zhun-shu-ru-shu-chu-liu/">
+        </link>
+        <updated>2019-01-28T23:54:14.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C实现顺序栈]]></title>
+        <id>https://Hicoder18.github.io/post/c-shi-xian-shun-xu-zhan/</id>
+        <link href="https://Hicoder18.github.io/post/c-shi-xian-shun-xu-zhan/">
+        </link>
+        <updated>2018-10-28T00:35:26.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C实现循环链表]]></title>
+        <id>https://Hicoder18.github.io/post/c-shi-xian-xun-huan-lian-biao/</id>
+        <link href="https://Hicoder18.github.io/post/c-shi-xian-xun-huan-lian-biao/">
+        </link>
+        <updated>2018-10-25T01:28:36.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C实现顺序表]]></title>
+        <id>https://Hicoder18.github.io/post/c-shi-xian-shun-xu-biao/</id>
+        <link href="https://Hicoder18.github.io/post/c-shi-xian-shun-xu-biao/">
+        </link>
+        <updated>2018-10-23T02:22:50.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C实现单链表]]></title>
+        <id>https://Hicoder18.github.io/post/c-shi-xian-dan-lian-biao/</id>
+        <link href="https://Hicoder18.github.io/post/c-shi-xian-dan-lian-biao/">
+        </link>
+        <updated>2018-10-23T01:00:58.000Z</updated>
+    </entry>
+</feed>
